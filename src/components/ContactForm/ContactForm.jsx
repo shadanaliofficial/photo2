@@ -4,7 +4,7 @@ import "./ContactForm.css";
 const ContactForm = () => {
   // ✅ IMPORTANT: Put your client's WhatsApp number here (WITH country code, no + sign)
   // Example India: "919876543210"
-  const WHATSAPP_NUMBER = "916289514021";
+  const WHATSAPP_NUMBER = "916291098044";
 
   const services = useMemo(
     () => [
