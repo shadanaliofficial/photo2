@@ -1,0 +1,10 @@
+.faq.page {
+  padding-top: 8em;
+  color: #0693e3;
+}
+
+.faq h1,
+.faq h2,
+.faq h3 {
+  font-family: 'Playfair Display', serif;
+}

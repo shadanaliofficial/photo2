@@ -1,0 +1,256 @@
+.contact-form {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+  margin: 2em;
+  background-color: #0693e3;
+  border-radius: 1em;
+  font-family: 'Playfair Display', serif;
+  
+}
+
+/* keep your color theme */
+.contact-form h3,
+.contact-form h4,
+.contact-form p,
+.contact-form input,
+.contact-form textarea {
+  color: var(--bg);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background-color: #fff;
+  color: #1a1a1a;
+}
+
+.contact-form .btn {
+  background-color: #fff;
+  color: var(--fg);
+}
+
+.contact-form-row:nth-child(1) {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+}
+
+.contact-form-row-copy-item {
+  flex: 1;
+}
+
+.contact-form-row-copy-item:nth-child(2) {
+  text-align: center;
+}
+
+.contact-form-row-copy-item:nth-child(3) {
+  text-align: right;
+}
+
+/* MAIN ROW */
+.contact-form-row:nth-child(2) {
+  display: flex;
+  gap: 1em;
+}
+
+.contact-form-col {
+  flex: 1;
+}
+
+/* LEFT COL */
+.contact-form-col:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5em;
+}
+
+.contact-form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+}
+
+.contact-form-header p {
+  margin-bottom: 0.5em;
+  width: 80%;
+}
+
+.contact-form-availability {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  border-top: 1px dashed var(--bg);
+  padding: 0.5em 0;
+}
+
+/* ✅ Services Grid */
+.contact-services {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85em;
+}
+
+.service-card {
+  width: 100%;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 0.25s ease, border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+.service-card.active {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--bg);
+}
+
+.service-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.service-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-card-copy {
+  padding: 0.75em 0.85em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.service-card-chip {
+  font-size: 0.75rem;
+  padding: 0.35em 0.6em;
+  border-radius: 999px;
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+  color: var(--bg);
+}
+
+/* RIGHT COL */
+.contact-form-col:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ✅ WhatsApp panel */
+.whatsapp-panel {
+  width: 100%;
+  padding: 1.25em;
+  border-radius: 1em;
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85em;
+}
+
+.whatsapp-panel-label {
+  opacity: 0.8;
+}
+
+.whatsapp-selected {
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin-bottom: 0.25em;
+}
+
+.form-item input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 1em;
+  border-radius: 0.75em;
+}
+
+.whatsapp-btn {
+  width: 100%;
+}
+
+.whatsapp-note {
+  opacity: 0.8;
+  font-size: 0.85rem;
+  margin-top: 0.25em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-form {
+    margin: 1.25em;
+  }
+
+  .contact-form-row:nth-child(1) {
+    flex-direction: column;
+    gap: 0.25em;
+  }
+
+  .contact-form-row-copy-item {
+    text-align: center;
+  }
+
+  .contact-form-row-copy-item:nth-child(3),
+  .contact-form h3,
+  .contact-form p {
+    text-align: center;
+  }
+
+  .contact-form-row:nth-child(2) {
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .contact-form-header p,
+  .contact-form-availability {
+    width: 100%;
+  }
+
+  .contact-form-col:nth-child(1) {
+    gap: 1.5em;
+  }
+
+  .contact-form-availability {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.25em;
+  }
+
+  .contact-services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .whatsapp-panel {
+    padding: 1em;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-services {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card-img {
+    aspect-ratio: 16/9;
+  }
+}

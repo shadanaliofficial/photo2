@@ -1,0 +1,25 @@
+const workList = [
+  {
+  id: 1,
+  title: "Little Wonders Studio",
+  category: "SOM Creations",
+  images: ["/work/work1.jpeg", "/work/logo.jpeg"],
+  link: "/Little-wonders",
+},
+  {
+    id: 2,
+    title: "Wedding",
+    category: "SOM Creations",
+    image: "/work/work2.JPG.avif",
+    link: "/gallery/wedding",
+  },
+  {
+    id: 3,
+    title: "Rice Ceremony & Birthday",
+    category: "SOM Creations",
+    image: "/work/work3.jpeg",
+    link: "/gallery/rice",
+  },
+];
+
+export default workList;
