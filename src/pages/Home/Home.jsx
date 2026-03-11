@@ -193,12 +193,12 @@ const Home = () => {
 
         <section ref={stickyTitlesRef} className="sticky-titles">
           <div className="sticky-titles-nav">
-            <p className="primary sm">About Me</p>
+            <p className="primary sm"></p>
             <p className="primary sm">Let's Connect</p>
           </div>
           <div className="sticky-titles-footer">
             <p className="primary sm">Storytelling Through Film</p>
-            <p className="primary sm">Open to Collaborations</p>
+            <p className="primary sm"></p>
           </div>
           <h2 ref={(el) => (titlesRef.current[0] = el)}>
             At SOM Creations, every project is treated as a unique creation.

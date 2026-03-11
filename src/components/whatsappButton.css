@@ -25,3 +25,33 @@
   height: 100%;
   object-fit: contain;
 }
+
+/* TABLET — max-width: 1024px */
+@media (max-width: 1024px) {
+  .whatsappBtn {
+    width: 62px;
+    height: 62px;
+    bottom: 36px;
+    right: 18px;
+  }
+}
+
+/* MOBILE LARGE — max-width: 768px */
+@media (max-width: 768px) {
+  .whatsappBtn {
+    width: 54px;
+    height: 54px;
+    bottom: 24px;
+    right: 16px;
+  }
+}
+
+/* MOBILE SMALL — max-width: 480px */
+@media (max-width: 480px) {
+  .whatsappBtn {
+    width: 46px;
+    height: 46px;
+    bottom: 18px;
+    right: 14px;
+  }
+}

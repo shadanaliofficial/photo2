@@ -150,22 +150,22 @@ Our talented photographers specialize in capturing the innocence and beauty of y
                 <div className="fav-tool-img">
                   <img src="/about/tool-1.jpg" alt="" />
                 </div>
-                <h4>DaVinci Resolve</h4>
+                <h4>Adobe Lightroom</h4>
                 <p className="primary sm">Color Grading</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-2.jpg" alt="" />
                 </div>
-                <h4>Adobe Premiere Pro</h4>
-                <p className="primary sm">Video Editing</p>
+                <h4>Photoshop</h4>
+                <p className="primary sm">Photo Editing</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-3.jpg" alt="" />
                 </div>
-                <h4>Blackmagic Pocket</h4>
-                <p className="primary sm">Cinematic Shooting</p>
+                <h4>Topaz Photo AI</h4>
+                <p className="primary sm">Photo Editing</p>
               </div>
             </div>
             <div className="fav-tools-list-row">
@@ -173,22 +173,22 @@ Our talented photographers specialize in capturing the innocence and beauty of y
                 <div className="fav-tool-img">
                   <img src="/about/tool-4.jpg" alt="" />
                 </div>
-                <h4>ShotDeck</h4>
-                <p className="primary sm">Visual References</p>
+                <h4>Adobe Premiere Pro</h4>
+                <p className="primary sm">Photo Editing</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-5.jpg" alt="" />
                 </div>
-                <h4>Frame.io</h4>
-                <p className="primary sm">Remote Collaboration</p>
+                <h4>Sony Camera</h4>
+                <p className="primary sm">Cinematic Photoshoot</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-6.jpg" alt="" />
                 </div>
-                <h4>Celtx</h4>
-                <p className="primary sm">Scriptwriting Tool</p>
+                <h4>Sony Lens</h4>
+                <p className="primary sm">Cinematic Photoshoot</p>
               </div>
             </div>
           </div>
