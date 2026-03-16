@@ -1,81 +1,197 @@
-.work-carousel {
-  position: fixed;
+/* ─────────────────────────────────────────
+   Work — 3-card slider, fits all screens
+───────────────────────────────────────── */
+
+.work {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100svh;
-  overflow: hidden;
   background-color: var(--fg);
+  overflow: hidden;
 }
 
-.work-slider-img {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* ── Wrapper ── */
+.work-slider-wrapper {
   width: 100%;
   height: 100%;
-  z-index: -1;
-}
-
-.work-items-preview-container {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 2em;
-  width: 75%;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  gap: 1em;
-}
-
-.work-item {
-  border: 1px dashed var(--bg200);
-  border-radius: 0.5em;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border 0.3s ease-in-out;
-}
-
-.work-item.active {
-  border: 1px dashed var(--bg);
-}
-
-.carousel-info {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
+  justify-content: center;
+  padding-top: 8vh;
+  gap: 1.75em;
+  user-select: none;
+  cursor: grab;
+  overflow: hidden;
+}
+.work-slider-wrapper:active {
+  cursor: grabbing;
+}
+
+/* ── Track ── */
+.work-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 1.25em;
+  /* overflow hidden so side cards are clipped at edges */
+  overflow: hidden;
+  padding: 1em 0;
 }
 
-.carousel-description,
-.carousel-title {
+/* ── Base card ── */
+.work-card {
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  flex-shrink: 0;
+  border-radius: 1em;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.work-card img {
   width: 100%;
-}
-
-.carousel-title h1 {
-  line-height: 1;
-}
-
-.carousel-title h1,
-.carousel-description p {
-  position: relative;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  will-change: transform;
-  color: #0693e3;
-  text-align: center;
-  font-family: 'Playfair Display', serif;
+  pointer-events: none;
 }
 
-@media (max-width: 1000px) {
-  .work-items-preview-container {
-    width: 100%;
-    padding: 0 1.25em;
+/* ── Center card ── */
+.work-card--center {
+  width: min(58vw, 680px);
+  height: min(40vw, 460px);
+  z-index: 2;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  flex-shrink: 0;
+}
+
+/* ── Side cards ── */
+.work-card--side {
+  width: min(32vw, 360px);
+  height: min(24vw, 280px);
+  z-index: 1;
+  filter: brightness(0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: filter 0.3s ease;
+}
+.work-card--side:hover {
+  filter: brightness(0.75);
+}
+
+.work-card--prev {
+  transform: translateX(3%);
+  margin-right: -5%;
+}
+.work-card--next {
+  transform: translateX(-3%);
+  margin-left: -5%;
+}
+
+/* ── Label ── */
+.work-card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 3em 1.25em 1em;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+/* Hide label on side cards */
+.work-card--side .work-card-label {
+  opacity: 0;
+}
+
+/* ── Arrows ── */
+.work-arrows {
+  display: flex;
+  gap: 1.25em;
+}
+
+.work-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.work-arrow:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: scale(1.08);
+}
+.work-arrow:active {
+  transform: scale(0.94);
+}
+.work-arrow:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.work-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Tablet ── */
+@media (max-width: 900px) {
+  .work-card--center {
+    width: 65vw;
+    height: 44vw;
+  }
+  .work-card--side {
+    width: 28vw;
+    height: 22vw;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .work-slider-wrapper {
+    gap: 1.25em;
+    padding-top: 6vh;
+  }
+  .work-card--center {
+    width: 78vw;
+    height: 52vw;
+  }
+  .work-card--side {
+    width: 22vw;
+    height: 30vw;
+  }
+  .work-card--prev {
+    transform: translateX(5%);
+    margin-right: -6%;
+  }
+  .work-card--next {
+    transform: translateX(-5%);
+    margin-left: -6%;
+  }
+  .work-card-label {
+    font-size: 0.95rem;
+  }
+  .work-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .work-arrow svg {
+    width: 14px;
+    height: 14px;
   }
 }

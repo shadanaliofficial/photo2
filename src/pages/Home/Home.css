@@ -222,6 +222,12 @@
   .hobby {
     aspect-ratio: 5/3;
   }
+
+  .hero-img img.hero-slide {
+    object-fit: contain;
+    object-position: center center;
+    background-color: #000; /* fills the letterbox bars */
+  }
 }
 
 @media (max-width: 600px) {
@@ -492,5 +498,40 @@
 
   .hobby h4 {
     font-size: 1rem;
+  }
+
+  .hero-img img.hero-slide {
+    object-fit: contain;
+    object-position: center center;
+    background-color: #000;
+  }
+}
+
+/* ============================================================
+   MOBILE LARGE — max-width: 768px
+   ============================================================ */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    aspect-ratio: 1 / 1; /* match your image's natural ratio */
+    min-height: unset;
+  }
+
+  .hero-img img.hero-slide {
+    object-fit: cover;  /* back to cover, no black bars */
+    object-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    min-height: unset;
+  }
+
+  .hero-img img.hero-slide {
+    object-fit: cover;
+    object-position: center center;
   }
 }

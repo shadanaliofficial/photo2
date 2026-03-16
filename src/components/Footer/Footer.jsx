@@ -21,8 +21,9 @@ const Footer = () => {
           </h3>
 
           <p className="secondary">
-            From expressive portraits to full lifestyle sessions — I’m always
-            open to creative collaborations. Feel free to reach out anytime.
+            From grand weddings to initmate maternity and newborn moments, and joyful rice ceremonies
+            and birthdays, Som Creations thoughtfully captures the milestones that shape your family's story.
+            Reach out anytime to begin your journey with us.
           </p>
 
           <Link to="/contact" className="btn">

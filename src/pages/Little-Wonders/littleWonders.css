@@ -28,14 +28,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 8vh;
+  padding-bottom: 4vh;
   align-items: center;
   text-align: center;
   color: white;
 }
 
 .hero-overlay h1 {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: 6vh;
   letter-spacing: 0.15em;
   font-weight: 500;
   font-family: "Playfair Display", sans-serif;
@@ -43,7 +43,7 @@
 }
 
 .hero-overlay p {
-  margin-top: 12px;
+  margin-top: 6px;
   font-size: clamp(1rem, 1.2vw, 1.2rem);
   letter-spacing: 0.25em;
   font-family: "Playfair Display", sans-serif;
@@ -431,5 +431,133 @@
   .category-overlay h2 {
     font-size: 1.5rem;
     letter-spacing: 0.15em;
+  }
+}
+
+@media (max-width: 768px) {
+  .lw-hero {
+    height: auto;
+    aspect-ratio: 4 / 3;  /* try this first, tweak if needed */
+    min-height: unset;
+  }
+
+  .hero-image {
+    background-size: cover;
+    background-position: center top; /* keeps subject visible */
+  }
+}
+
+@media (max-width: 480px) {
+  .lw-hero {
+    height: auto;
+    aspect-ratio: 4 / 3;
+    min-height: unset;
+  }
+
+  .hero-image {
+    background-size: cover;
+    background-position: center top;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-overlay h1 {
+    font-size: clamp(1.4rem, 7vw, 2.2rem);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: clamp(1.2rem, 6.5vw, 1.8rem);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-overlay {
+    padding-bottom: 1.25em;
+    justify-content: flex-end;
+  }
+
+  .hero-overlay h1 {
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .hero-overlay p {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay {
+    padding-bottom: 1em;
+    justify-content: flex-end;
+  }
+
+  .hero-overlay h1 {
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .hero-overlay p {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .images-stack {
+    height: 420px;
+    width: 100%;
+  }
+
+  .img-back {
+    width: 65%;
+    height: 82%;
+    object-position: center top;
+  }
+
+  .img-front {
+    width: 50%;
+    height: 55%;
+    bottom: 0;
+    right: 0;
+    object-fit: cover;
+    object-position: center center; /* centers the baby in the frame */
+  }
+}
+
+@media (max-width: 480px) {
+  .images-stack {
+    height: 340px;
+    width: 100%;
+  }
+
+  .img-back {
+    width: 63%;
+    height: 78%;
+    object-position: center top;
+  }
+
+  .img-front {
+    width: 48%;
+    height: 50%;
+    bottom: 0;
+    right: 0;
+    object-fit: cover;
+    object-position: center center;
   }
 }

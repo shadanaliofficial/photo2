@@ -1,178 +1,163 @@
 import projects from "../../data/projects";
-import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Work.css";
-
 import { gsap } from "gsap";
-
 import Transition from "../../components/Transition/Transition";
 
 const Work = () => {
-  const [activeProject, setActiveProject] = useState(projects[0]);
-  const carouselDescriptionRef = useRef(null);
-  const carouselTitleRef = useRef(null);
-  const workSliderImgRef = useRef(null);
-  const descriptionTextRef = useRef(null);
-  const titleTextRef = useRef(null);
-  const imageRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
+  const total = projects.length;
 
-  const animateCarouselInfo = (newProject) => {
-    const tl = gsap.timeline();
+  const prevCardRef = useRef(null);
+  const centerCardRef = useRef(null);
+  const nextCardRef = useRef(null);
+  const dragStartX = useRef(null);
+  const dragStartTime = useRef(null);
 
-    tl.to([descriptionTextRef.current, titleTextRef.current], {
-      yPercent: -100,
-      duration: 0.75,
-      stagger: 0.25,
-      ease: "power4.in",
-    });
+  const getIndexes = useCallback(
+    (center) => ({
+      prev: (center - 1 + total) % total,
+      center,
+      next: (center + 1) % total,
+    }),
+    [total]
+  );
 
-    tl.to(
-      imageRef.current,
-      {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.in",
+  const slideTo = useCallback(
+    (direction) => {
+      if (isAnimating) return;
+      setIsAnimating(true);
+
+      const newIndex =
+        direction === 1
+          ? (activeIndex + 1) % total
+          : (activeIndex - 1 + total) % total;
+
+      const prevEl = prevCardRef.current;
+      const centerEl = centerCardRef.current;
+      const nextEl = nextCardRef.current;
+
+      const tl = gsap.timeline({
         onComplete: () => {
-          if (descriptionTextRef.current) descriptionTextRef.current.remove();
-          if (titleTextRef.current && titleTextRef.current.parentNode) {
-            titleTextRef.current.parentNode.remove();
-          }
-          if (imageRef.current) imageRef.current.remove();
-
-          const newDescriptionEl = document.createElement("p");
-          newDescriptionEl.className = "primary sm";
-          newDescriptionEl.textContent = newProject.description;
-
-          const titleContainer = document.createElement("div");
-          titleContainer.className = "project-title-container";
-          titleContainer.style.cursor = "pointer";
-
-          const newTitleEl = document.createElement("h1");
-          newTitleEl.textContent = newProject.title;
-
-          // 🔹 Updated navigation
-          titleContainer.onclick = () => navigate(newProject.link);
-
-          titleContainer.appendChild(newTitleEl);
-
-          const newImageEl = document.createElement("img");
-          newImageEl.src = newProject.image;
-          newImageEl.alt = newProject.title;
-
-          gsap.set(newDescriptionEl, { yPercent: 100 });
-          gsap.set(newTitleEl, { yPercent: 100 });
-          gsap.set(newImageEl, { opacity: 0 });
-
-          carouselDescriptionRef.current.appendChild(newDescriptionEl);
-          carouselTitleRef.current.appendChild(titleContainer);
-          workSliderImgRef.current.appendChild(newImageEl);
-
-          descriptionTextRef.current = newDescriptionEl;
-          titleTextRef.current = newTitleEl;
-          imageRef.current = newImageEl;
-
-          const inTl = gsap.timeline();
-
-          inTl.to(newImageEl, {
-            opacity: 1,
-            duration: 0.75,
-            ease: "power2.out",
-          });
-
-          inTl.to(
-            [newDescriptionEl, newTitleEl],
-            {
-              yPercent: 0,
-              duration: 0.75,
-              stagger: 0.25,
-              ease: "power4.out",
-            },
-            "-=0.5"
-          );
-
-          setActiveProject(newProject);
+          gsap.set([prevEl, centerEl, nextEl], { clearProps: "all" });
+          setActiveIndex(newIndex);
+          setIsAnimating(false);
         },
-      },
-      "-=0.5"
-    );
-  };
+      });
 
-  useEffect(() => {
-    if (
-      carouselDescriptionRef.current &&
-      carouselTitleRef.current &&
-      workSliderImgRef.current
-    ) {
-      descriptionTextRef.current =
-        carouselDescriptionRef.current.querySelector("p");
-
-      const initialTitleLink = carouselTitleRef.current.querySelector("a");
-
-      if (initialTitleLink) {
-        const initialTitle = initialTitleLink.querySelector("h1");
-
-        const titleContainer = document.createElement("div");
-        titleContainer.className = "project-title-container";
-        titleContainer.style.cursor = "pointer";
-
-        const newTitle = initialTitle.cloneNode(true);
-        titleContainer.appendChild(newTitle);
-
-        // 🔹 Updated navigation
-        titleContainer.onclick = () => navigate(activeProject.link);
-
-        initialTitleLink.parentNode.replaceChild(
-          titleContainer,
-          initialTitleLink
-        );
-
-        titleTextRef.current = newTitle;
+      if (direction === 1) {
+        // slide forward: center→left, next→center, prev fades out
+        tl.to(prevEl, { opacity: 0, scale: 0.85, duration: 0.35, ease: "power2.in" }, 0)
+          .to(centerEl, { x: "-100%", opacity: 0, duration: 0.45, ease: "power3.inOut" }, 0)
+          .to(nextEl, {
+            x: "-100%",
+            scale: 1,
+            opacity: 1,
+            filter: "brightness(1)",
+            duration: 0.45,
+            ease: "power3.inOut",
+          }, 0);
       } else {
-        titleTextRef.current = carouselTitleRef.current.querySelector("h1");
+        // slide back: center→right, prev→center, next fades out
+        tl.to(nextEl, { opacity: 0, scale: 0.85, duration: 0.35, ease: "power2.in" }, 0)
+          .to(centerEl, { x: "100%", opacity: 0, duration: 0.45, ease: "power3.inOut" }, 0)
+          .to(prevEl, {
+            x: "100%",
+            scale: 1,
+            opacity: 1,
+            filter: "brightness(1)",
+            duration: 0.45,
+            ease: "power3.inOut",
+          }, 0);
       }
+    },
+    [isAnimating, activeIndex, total]
+  );
 
-      imageRef.current = workSliderImgRef.current.querySelector("img");
-    }
-  }, [navigate, activeProject]);
-
-  const handleWorkItemClick = (project) => {
-    if (project.id !== activeProject.id) {
-      animateCarouselInfo(project);
-    }
+  const handleDragStart = (clientX) => {
+    dragStartX.current = clientX;
+    dragStartTime.current = Date.now();
   };
+  const handleDragEnd = (clientX) => {
+    if (dragStartX.current === null) return;
+    const dx = clientX - dragStartX.current;
+    const dt = Date.now() - dragStartTime.current;
+    if (Math.abs(dx) > 40 || (Math.abs(dx) > 20 && dt < 300)) {
+      slideTo(dx < 0 ? 1 : -1);
+    }
+    dragStartX.current = null;
+  };
+
+  const { prev, center, next } = getIndexes(activeIndex);
 
   return (
     <div className="page work">
-      <div className="work-carousel">
-        <div className="work-slider-img" ref={workSliderImgRef}>
-          <img src={activeProject.image} alt={activeProject.title} />
-        </div>
-
-        <div className="work-items-preview-container">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className={`work-item ${
-                activeProject.id === project.id ? "active" : ""
-              }`}
-              onClick={() => handleWorkItemClick(project)}
-            >
-              <img src={project.image} alt={project.title} />
-            </div>
-          ))}
-        </div>
-
-        <div className="carousel-info">
-          <div className="carousel-description" ref={carouselDescriptionRef}>
-            <p className="primary sm">{activeProject.description}</p>
+      <div
+        className="work-slider-wrapper"
+        onMouseDown={(e) => handleDragStart(e.clientX)}
+        onMouseUp={(e) => handleDragEnd(e.clientX)}
+        onMouseLeave={() => (dragStartX.current = null)}
+        onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
+        onTouchEnd={(e) => handleDragEnd(e.changedTouches[0].clientX)}
+      >
+        <div className="work-track">
+          {/* PREV */}
+          <div
+            ref={prevCardRef}
+            className="work-card work-card--side work-card--prev"
+            onClick={() => !isAnimating && slideTo(-1)}
+          >
+            <img src={projects[prev].image} alt={projects[prev].title} draggable={false} />
+            <div className="work-card-label">{projects[prev].title}</div>
           </div>
 
-          <div className="carousel-title" ref={carouselTitleRef}>
-            <Link to={activeProject.link}>
-              <h1>{activeProject.title}</h1>
-            </Link>
+          {/* CENTER */}
+          <div
+            ref={centerCardRef}
+            className="work-card work-card--center"
+            onClick={() => !isAnimating && navigate(projects[center].link)}
+          >
+            <img src={projects[center].image} alt={projects[center].title} draggable={false} />
+            <div className="work-card-label">{projects[center].title}</div>
           </div>
+
+          {/* NEXT */}
+          <div
+            ref={nextCardRef}
+            className="work-card work-card--side work-card--next"
+            onClick={() => !isAnimating && slideTo(1)}
+          >
+            <img src={projects[next].image} alt={projects[next].title} draggable={false} />
+            <div className="work-card-label">{projects[next].title}</div>
+          </div>
+        </div>
+
+        {/* Arrows */}
+        <div className="work-arrows">
+          <button
+            className="work-arrow"
+            onClick={() => slideTo(-1)}
+            aria-label="Previous"
+            disabled={isAnimating}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          <button
+            className="work-arrow"
+            onClick={() => slideTo(1)}
+            aria-label="Next"
+            disabled={isAnimating}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <polyline points="9 6 15 12 9 18" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>

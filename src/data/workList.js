@@ -5,6 +5,7 @@ const workList = [
   category: "SOM Creations",
   images: ["/work/work1.jpeg", "/work/logo.jpeg"],
   link: "/Little-wonders",
+  color: "#a68254",
 },
   {
     id: 2,
@@ -12,6 +13,7 @@ const workList = [
     category: "SOM Creations",
     image: "/work/work2.JPG.avif",
     link: "/gallery/wedding",
+    color: "#0693e3",
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const workList = [
     category: "SOM Creations",
     image: "/work/work3.jpeg",
     link: "/gallery/rice",
+    color: "#0693e3",
   },
 ];
 

@@ -227,7 +227,7 @@ const Home = () => {
                 className="home-work-item"
               >
                 <p className="primary sm">{`${String(index + 1).padStart(2, "0")} - ${String(workItems.length).padStart(2, "0")}`}</p>
-                <h3>{work.title}</h3>
+                <h3 style={{ color: work.color || "inherit" }}>{work.title}</h3>
 
                 {/* SLIDESHOW only for first item */}
                 {index === 0 ? (
