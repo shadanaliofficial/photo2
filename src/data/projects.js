@@ -20,6 +20,13 @@ const projects = [
     image: "/project/rice/r1.jpg.avif",
     link: "/gallery/rice",
   },
+  {
+    id: 4,
+    title: "Video Gallery",
+    description: "Soulful Videos",
+    image: "/work/work4.avif",
+    link: "/Video-Gallery",
+  },
 ];
 
 export default projects;

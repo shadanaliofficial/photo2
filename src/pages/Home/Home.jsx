@@ -5,6 +5,7 @@ import "./Home.css";
 
 import AnimatedCopy from "../../components/AnimatedCopy/AnimatedCopy";
 import Reviews from "../../components/Reviews/Reviews";
+import NumberCounter from "../../components/NumberCounter/NumberCounter";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import Footer from "../../components/Footer/Footer";
 
@@ -194,10 +195,10 @@ const Home = () => {
         <section ref={stickyTitlesRef} className="sticky-titles">
           <div className="sticky-titles-nav">
             <p className="primary sm"></p>
-            <p className="primary sm">Let's Connect</p>
+            <p className="primary sm"></p>
           </div>
           <div className="sticky-titles-footer">
-            <p className="primary sm">Storytelling Through Film</p>
+            <p className="primary sm"></p>
             <p className="primary sm"></p>
           </div>
           <h2 ref={(el) => (titlesRef.current[0] = el)}>
@@ -277,6 +278,8 @@ const Home = () => {
             </AnimatedCopy>
           </div>
         </section>
+
+        <NumberCounter />
 
         <ContactForm />
         <Footer />

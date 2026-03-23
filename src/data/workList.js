@@ -23,6 +23,15 @@ const workList = [
     link: "/gallery/rice",
     color: "#0693e3",
   },
+
+  {
+  id: 4,
+  title: "Video Gallery",
+  category: "SOM Creations",
+  image: "/work/work4.avif",
+  link: "/Video-Gallery",
+  color: "#0693e3",
+},
 ];
 
 export default workList;

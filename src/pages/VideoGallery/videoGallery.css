@@ -1,0 +1,250 @@
+/* src/pages/VideoGallery/VideoGallery.css */
+
+.vgallery-page {
+  min-height: 100vh;
+  padding: 130px 0 100px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg, #f5f2ee);
+}
+
+.vgallery-canvas {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 60px;
+}
+
+/* ── Grid — 2 per row ── */
+.vgallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 40px;
+}
+
+/* ── Card ── */
+.vgallery-thumb {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 9 / 16;
+  background: #1a1a1a;
+  border-radius: 14px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.13);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.vgallery-thumb:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  transform: translateY(-5px);
+}
+
+.vgallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.4s ease;
+  filter: brightness(0.93);
+}
+
+.vgallery-thumb:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.55);
+}
+
+/* ── Overlay ── */
+.vgallery-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ── Play button ── */
+.vgallery-play {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.vgallery-play svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+}
+
+.vgallery-thumb:hover .vgallery-play {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Lightbox ── */
+.vgallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: lb-fade 0.25s ease;
+}
+
+@keyframes lb-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.vgallery-close {
+  position: absolute;
+  top: 28px;
+  right: 36px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  z-index: 10;
+  line-height: 1;
+}
+
+.vgallery-close:hover { opacity: 1; }
+
+/* ── Player ── */
+.vgallery-player {
+  height: min(86vh, 700px);
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  animation: lb-rise 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes lb-rise {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.vgallery-embed {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.vgallery-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ── Arrows ── */
+.vgallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 56px;
+  cursor: pointer;
+  padding: 20px;
+  opacity: 0.4;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.vgallery-arrow:hover { opacity: 1; }
+.vgallery-arrow--prev { left: 20px; }
+.vgallery-arrow--next { right: 20px; }
+
+/* ── Tablet ── */
+@media (max-width: 900px) {
+  .vgallery-canvas {
+    padding: 0 32px;
+  }
+
+  .vgallery-grid {
+    gap: 32px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vgallery-page {
+    padding: 110px 0 70px;
+  }
+
+  .vgallery-canvas {
+    padding: 0 24px;
+  }
+
+  .vgallery-grid {
+    gap: 24px 16px;
+  }
+
+  .vgallery-player {
+    height: min(80vh, 580px);
+  }
+
+  .vgallery-arrow { font-size: 40px; }
+  .vgallery-close { top: 20px; right: 22px; font-size: 24px; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .vgallery-page {
+    padding: 95px 0 60px;
+  }
+
+  .vgallery-canvas {
+    padding: 0 16px;
+  }
+
+  .vgallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 10px;
+  }
+
+  .vgallery-thumb {
+    border-radius: 8px;
+  }
+
+  .vgallery-play {
+    width: 46px;
+    height: 46px;
+  }
+
+  .vgallery-play svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .vgallery-player {
+    height: min(78vh, 500px);
+    border-radius: 8px;
+  }
+
+  .vgallery-arrow {
+    font-size: 34px;
+    padding: 10px;
+  }
+
+  .vgallery-arrow--prev { left: 6px; }
+  .vgallery-arrow--next { right: 6px; }
+}

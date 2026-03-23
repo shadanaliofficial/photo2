@@ -1,3 +1,9 @@
+/* ============================================================
+   StudioMenu.css
+   Full styles — includes everything from Menu.css with
+   studio-specific overrides for the taller bar & bigger logo.
+   ============================================================ */
+
 .menu-container {
   position: fixed;
   width: 100vw;
@@ -7,11 +13,12 @@
   z-index: 100;
   pointer-events: none;
 }
+
 .menu-bar {
   position: fixed;
   top: 0;
   width: calc(100% - 4em);
-  height: 64px;
+  height: 75px; /* taller than global 64px to fit studio logo */
   margin: 2em;
   display: flex;
   justify-content: space-between;
@@ -24,58 +31,48 @@
   pointer-events: all;
   z-index: 100000;
 }
+
 .menu-bar-container {
   background-color: transparent;
   width: 100%;
-  height: 64px;
+  height: 75px; /* must match .menu-bar height */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 0.7em 0.1em 1em;
 }
-.menu-logo-group {
-  display: flex;
-  align-items: center;
-  gap: 0.75em;
-  height: 100%;
-  cursor: pointer;
-}
+
 .menu-logo {
   display: flex;
   align-items: center;
   height: 100%;
+  cursor: pointer;
 }
+
 .menu-logo a {
   display: flex;
   align-items: center;
   height: 100%;
   text-decoration: none;
 }
+
 .logo-image {
-  width: 80px;
+  width: 120px; /* bigger than global 80px for studio logo */
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   transition: opacity 0.3s ease;
 }
+
 .logo-image:hover {
   opacity: 0.8;
 }
-.menu-tagline {
-  color: #ffff;
-  font-family: "Playfair Display", serif;
-  font-weight: 900;
-  font-size: 1rem;
-  font-style: italic;
-  letter-spacing: 0.12em;
-  word-spacing: 0.4em;
-  white-space: nowrap;
-  user-select: none;
-}
+
 .menu-actions {
   display: flex;
   align-items: center;
   gap: 2em;
 }
+
 .menu-toggle {
   width: 60px;
   height: 60px;
@@ -83,6 +80,7 @@
   justify-content: flex-end;
   align-items: center;
 }
+
 .hamburger-icon {
   position: absolute;
   display: flex;
@@ -97,9 +95,11 @@
   border: 1px dashed rgba(255, 255, 255, 0.25);
   cursor: pointer;
 }
+
 .hamburger-icon:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
 .hamburger-icon:before,
 .hamburger-icon:after {
   content: "";
@@ -111,18 +111,23 @@
   transition-delay: 150ms;
   will-change: transform;
 }
+
 .hamburger-icon:before {
   transform: translateY(-3px);
 }
+
 .hamburger-icon:after {
   transform: translateY(3px);
 }
+
 .active.hamburger-icon:before {
   transform: translateY(0) rotate(45deg);
 }
+
 .active.hamburger-icon:after {
   transform: translateY(0) rotate(-45deg);
 }
+
 .menu {
   position: absolute;
   top: 0;
@@ -140,6 +145,7 @@
   z-index: 100000;
   margin: 2em;
 }
+
 .menu-link-item {
   position: relative;
   padding: 1em 0 0.125em 0;
@@ -147,10 +153,12 @@
   text-align: center;
   pointer-events: all;
 }
+
 .menu-link-item .menu-link-item-holder {
   position: relative;
   will-change: transform;
 }
+
 .menu-link-item .menu-link-item-holder a {
   position: relative;
   color: #0693e3;
@@ -161,8 +169,13 @@
   line-height: 90%;
   transition: color 0.3s;
 }
+
 .menu-link-item .menu-link-item-holder:hover a {
   color: rgba(255, 255, 255, 1);
+}
+
+.menu-link-item:last-child .menu-link {
+  color: #a68254;
 }
 
 /* ============================================================
@@ -172,32 +185,32 @@
   .menu-bar {
     margin: 1.25em;
     width: calc(100% - 2.5em);
-    height: 58px;
+    height: 80px;
   }
+
   .menu-bar-container {
-    height: 58px;
+    height: 80px;
     padding: 0 0.6em 0.1em 0.9em;
   }
+
   .menu {
     width: calc(100% - 2.5em);
     height: calc(100svh - 2.5em);
     margin: 1.25em;
   }
+
   .menu-actions {
     gap: 1.25em;
   }
+
   .menu-link-item .menu-link-item-holder a {
     font-size: clamp(1.5rem, 5.5vw, 4rem);
     line-height: 115%;
     white-space: normal;
   }
+
   .logo-image {
-    width: 70px;
-  }
-  .menu-tagline {
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-    word-spacing: 0.35em;
+    width: 105px;
   }
 }
 
@@ -208,50 +221,54 @@
   .menu-bar {
     margin: 1em;
     width: calc(100% - 2em);
-    height: 54px;
+    height: 72px;
     border-radius: 0.85rem;
   }
+
   .menu-bar-container {
-    height: 54px;
+    height: 72px;
     padding: 0 0.5em 0.1em 0.75em;
   }
+
   .menu {
     width: calc(100% - 2em);
     height: calc(100svh - 2em);
     margin: 1em;
     border-radius: 0.85rem;
   }
+
   .menu-actions {
     gap: 1em;
   }
+
   .menu-toggle {
     width: 50px;
     height: 50px;
     justify-content: flex-end;
   }
+
   .hamburger-icon {
     width: 50px;
     height: 36px;
   }
+
   .menu-col {
     width: 100%;
     flex-direction: column;
   }
+
   .menu-link-item {
     padding: 0.75em 0 0.1em 0;
   }
+
   .menu-link-item .menu-link-item-holder a {
     font-size: clamp(1.2rem, 6vw, 3rem);
     line-height: 120%;
     white-space: normal;
   }
+
   .logo-image {
-    width: 60px;
-  }
-  .menu-tagline {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    word-spacing: 0.25em;
+    width: 90px;
   }
 }
 
@@ -262,52 +279,52 @@
   .menu-bar {
     margin: 0.75em;
     width: calc(100% - 1.5em);
-    height: 50px;
+    height: 64px;
     border-radius: 0.75rem;
   }
+
   .menu-bar-container {
-    height: 50px;
+    height: 64px;
     padding: 0 0.4em 0.1em 0.6em;
   }
+
   .menu {
     width: calc(100% - 1.5em);
     height: calc(100svh - 1.5em);
     margin: 0.75em;
     border-radius: 0.75rem;
   }
+
   .menu-actions {
     gap: 0.75em;
   }
+
   .menu-toggle {
     width: 44px;
     height: 44px;
   }
+
   .hamburger-icon {
     width: 44px;
     height: 34px;
   }
+
   .hamburger-icon:before,
   .hamburger-icon:after {
     width: 20px;
   }
+
   .menu-link-item {
     padding: 0.5em 0 0.1em 0;
   }
+
   .menu-link-item .menu-link-item-holder a {
     font-size: clamp(1rem, 7vw, 2.5rem);
     line-height: 125%;
     white-space: normal;
   }
-  .logo-image {
-    width: 52px;
-  }
-  .menu-tagline {
-    font-size: 0.6rem;
-    letter-spacing: 0.05em;
-    word-spacing: 0.15em;
-  }
-}
 
-.menu-link-item:last-child .menu-link {
-  color: #a68254;
+  .logo-image {
+    width: 78px;
+  }
 }

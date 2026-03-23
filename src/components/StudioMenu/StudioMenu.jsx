@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Menu.css";
+import "./studioMenu.css";
 
 import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
-import logo from "../../assets/images/logo.jpeg";
+import studioLogo from "../../assets/images/studio-logo.jpeg"; // 👈 swap in your studio logo path
 
-const Menu = () => {
+const StudioMenu = () => {
   const menuLinks = [
     { path: "/", label: "Home" },
     { path: "/work", label: "Work" },
@@ -106,6 +106,7 @@ const Menu = () => {
         menuBarAnimation.current.kill();
       }
 
+      // Taller expanded height to match the bigger studio bar
       const heightValue =
         windowWidth < 1000 ? "calc(100% - 2.5em)" : "calc(100% - 4em)";
 
@@ -144,33 +145,34 @@ const Menu = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
-   const handleScroll = () => {
-  if (isMenuOpen) return;
+    const handleScroll = () => {
+      if (isMenuOpen) return;
 
-  const currentScrollY = window.scrollY;
+      const currentScrollY = window.scrollY;
 
-  if (currentScrollY <= 10) {
-    gsap.to(".menu-bar", {
-      y: 0,
-      duration: 1,
-      ease: "power2.out",
-    });
-  } else if (currentScrollY > lastScrollY.current) {
-    gsap.to(".menu-bar", {
-      y: -200,
-      duration: 1,
-      ease: "power2.out",
-    });
-  } else {
-    gsap.to(".menu-bar", {
-      y: 0,
-      duration: 1,
-      ease: "power2.out",
-    });
-  }
+      if (currentScrollY <= 10) {
+        gsap.to(".menu-bar", {
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+        });
+      } else if (currentScrollY > lastScrollY.current) {
+        gsap.to(".menu-bar", {
+          y: -200,
+          duration: 1,
+          ease: "power2.out",
+        });
+      } else {
+        gsap.to(".menu-bar", {
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+        });
+      }
 
-  lastScrollY.current = currentScrollY;
-};
+      lastScrollY.current = currentScrollY;
+    };
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -188,15 +190,13 @@ const Menu = () => {
 
   return (
     <div className="menu-container" ref={menuContainer}>
-      <div className="menu-bar" ref={menuBarRef}>
-        <div className="menu-bar-container">
-          <div className="menu-logo-group" onClick={closeMenu}>
-            <div className="menu-logo">
-              <Link to="/">
-                <img src={logo} alt="Logo" className="logo-image" />
-              </Link>
-            </div>
-            <span className="menu-tagline">Explore · Envision · Evolve</span>
+      {/* studio-menu-bar adds the extra height on top of .menu-bar */}
+      <div className="menu-bar studio-menu-bar" ref={menuBarRef}>
+        <div className="menu-bar-container studio-menu-bar-container">
+          <div className="menu-logo" onClick={closeMenu}>
+            <Link to="/little-wonders">
+              <img src={studioLogo} alt="Little Wonders Studio Logo" className="logo-image studio-logo-image" />
+            </Link>
           </div>
           <div className="menu-actions">
             <div className="menu-toggle">
@@ -230,4 +230,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default StudioMenu;

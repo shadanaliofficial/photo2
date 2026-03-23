@@ -74,10 +74,10 @@ Phone: ${trimmedPhone}`;
           <p className="primary sm">Let’s create together</p>
         </div>
         <div className="contact-form-row-copy-item">
-          <p className="primary sm">(Scene — 07)</p>
+          <p className="primary sm"></p>
         </div>
         <div className="contact-form-row-copy-item">
-          <p className="primary sm">&copy; 2025</p>
+          <p className="primary sm"></p>
         </div>
       </div>
 
@@ -116,8 +116,8 @@ Phone: ${trimmedPhone}`;
           </div>
 
           <div className="contact-form-availability">
-            <p className="primary sm">Available for Freelance</p>
-            <p className="primary sm">Clients worldwide</p>
+            <p className="primary sm"></p>
+            <p className="primary sm"></p>
           </div>
         </div>
 
