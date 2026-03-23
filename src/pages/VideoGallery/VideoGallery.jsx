@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { videos } from "../../data/videoData";
 import Transition from "../../components/Transition/Transition";
-import "./VideoGallery.css";
+import "./videoGallery.css";
 
 const VideoGallery = () => {
   const [activeIndex, setActiveIndex] = useState(null);
